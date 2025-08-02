@@ -9,6 +9,12 @@ YELLOW=\033[1;33m
 BLUE=\033[0;34m
 NC=\033[0m # No Color
 
+@if [ -z "$$(docker network ls --filter name=task-net --format '{{.Name}}')" ]; then \
+		echo "Creating Docker network 'task-net'..."; \
+		docker network create task-net; \
+else \
+	echo "Docker network 'task-net' already exists."; \
+fi
 # Default target
 help:
 	@echo "$(BLUE)================================================$(NC)"
