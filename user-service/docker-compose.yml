@@ -1,0 +1,14 @@
+services:
+  user-service:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+    ports:
+      - "${APP_PORT}:${DOCKER_PORT}"
+    networks:
+      - task-net
+networks:
+  task-net:
+     external: true
